@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zxhdhcp.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Linux下博客的搭建">
+<meta property="og:type" content="website">
+<meta property="og:title" content="This is a Blog">
+<meta property="og:url" content="https://zxhdhcp.github.io/index.html">
+<meta property="og:site_name" content="This is a Blog">
+<meta property="og:description" content="Linux下博客的搭建">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="BLACK GHOST">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://zxhdhcp.github.io/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>This is a Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">This is a Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">这是一个普通的博客空间</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/zxhdhcp" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zxhdhcp.github.io/2021/05/26/KMS%20%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AE%89%E8%A3%85%E5%AF%86%E9%92%A5%E5%85%A8%E9%9B%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="BLACK GHOST">
+      <meta itemprop="description" content="Linux下博客的搭建">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="This is a Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/26/KMS%20%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AE%89%E8%A3%85%E5%AF%86%E9%92%A5%E5%85%A8%E9%9B%86/" class="post-title-link" itemprop="url">KMS 客户端安装密钥</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-26 23:00:34 / 修改时间：14:29:09" itemprop="dateCreated datePublished" datetime="2021-05-26T23:00:34+08:00">2021-05-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/kms/" itemprop="url" rel="index"><span itemprop="name">kms</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="KMS-客户端安装密钥"><a href="#KMS-客户端安装密钥" class="headerlink" title="KMS 客户端安装密钥"></a>KMS 客户端安装密钥</h1><blockquote>
+<p>适用于：Windows Server 2019、Windows Server 半年频道、Windows Server 2016、Windows 10</p>
+</blockquote>
+<p>默认情况下，运行批量许可版本的 Windows Server、Windows  10、Windows 8.1、Windows Server 2012 R2、Windows 8、Windows Server  2012、Windows 7、Windows Server 2008 R2、Windows Vista 和 Windows Server  2008 的计算机为无需额外配置的 KMS 客户端。</p>
+<p> 备注</p>
+<p>在以下各表中，“LTSC”代表“长期服务频道”，而“LTSB”是指“长期服务分支”。</p>
+<p><strong>若要使用此处列出的密钥（它们是 GVLK），你必须首先在你的部署中运行 KMS 主机。</strong> 如果你尚未配置 KMS 主机，则请参阅 (Deploy KMS Activation)（部署 KMS 激活），以了解设置主机的步骤。</p>
+<p>如果是将计算机从 KMS 主机、MAK 或零售版 Windows 转换为 KMS 客户端，则从下表中选择相应的安装程序密钥 (GVLK) 进行安装。 若要安装客户端安装程序密钥，请打开客户端上的管理命令提示符，键入 slmgr /ipk  <setup key>，然后按 Enter。</p>
+<table>
+<thead>
+<tr>
+<th>如果你希望</th>
+<th>请使用以下资源</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>在批量激活方案之外激活 Windows（即，你尝试激活零售版本的 Windows），<strong>这些密钥将不可用</strong>。</td>
+<td>请点击以下链接以获取零售版本的 Windows：</td>
+</tr>
+<tr>
+<td>修复在尝试激活 Windows 8.1、Windows Server 2012 R2 或更新的系统时收到的以下错误：“错误：0xC004F050 软件授权服务报告产品密钥无效”…</td>
+<td>如果 KMS 主机运行的是 Windows 8.1、Windows Server 2012 R2、Windows 8 或 Windows Server 2012，则在 KMS 主机上[安装此更新]。</td>
+</tr>
+</tbody></table>
+<ul>
+<li>[获取 Windows 10]</li>
+<li>[获取新的 Windows 产品密钥]</li>
+<li>[正版 Windows 帮助和操作说明]</li>
+</ul>
+<blockquote>
+<p>如果你运行的是 Windows Server 2008 R2 或 Windows 7，则请留意一项更新，该更新支持将这些计算机用作 Windows 10 客户端的 KMS 主机。</p>
+</blockquote>
+<h2 id="Windows-Server-半年频道版本"><a href="#Windows-Server-半年频道版本" class="headerlink" title="Windows Server 半年频道版本"></a>Windows Server 半年频道版本</h2><h3 id="Windows-Server-版本-1909、版本1903-和版本-1809"><a href="#Windows-Server-版本-1909、版本1903-和版本-1809" class="headerlink" title="Windows Server 版本 1909、版本1903 和版本 1809"></a>Windows Server 版本 1909、版本1903 和版本 1809</h3><table>
+<thead>
+<tr>
+<th>操作系统版本</th>
+<th>KMS 客户端安装程序密钥</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows Server Datacenter</td>
+<td>6NMRW-2C8FM-D24W7-TQWMY-CWH2D</td>
+</tr>
+<tr>
+<td>Windows Server Standard</td>
+<td>N2KJX-J94YW-TQVFB-DG9YT-724CC</td>
+</tr>
+</tbody></table>
+<h2 id="Windows-Server-LTSC-LTSB-版本"><a href="#Windows-Server-LTSC-LTSB-版本" class="headerlink" title="Windows Server LTSC/LTSB 版本"></a>Windows Server LTSC/LTSB 版本</h2><h3 id="Windows-Server-2019"><a href="#Windows-Server-2019" class="headerlink" title="Windows Server 2019"></a>Windows Server 2019</h3><table>
+<thead>
+<tr>
+<th>操作系统版本</th>
+<th>KMS 客户端安装程序密钥</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows Server 2019 Datacenter</td>
+<td>WMDGN-G9PQG-XVVXX-R3X43-63DFG</td>
+</tr>
+<tr>
+<td>Windows Server 2019 Standard</td>
+<td>N69G4-B89J2-4G8F4-WWYCC-J464C</td>
+</tr>
+<tr>
+<td>Windows Server 2019 Essentials</td>
+<td>WVDHN-86M7X-466P6-VHXV7-YY726</td>
+</tr>
+</tbody></table>
+<h3 id="Windows-Server-2016"><a href="#Windows-Server-2016" class="headerlink" title="Windows Server 2016"></a>Windows Server 2016</h3><table>
+<thead>
+<tr>
+<th>操作系统版本</th>
+<th>KMS 客户端安装程序密钥</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows Server 2016 Datacenter</td>
+<td>CB7KF-BWN84-R7R2Y-793K2-8XDDG</td>
+</tr>
+<tr>
+<td>Windows Server 2016 Standard</td>
+<td>WC2BQ-8NRM3-FDDYY-2BFGV-KHKQY</td>
+</tr>
+<tr>
+<td>Windows Server 2016 Essentials</td>
+<td>JCKRF-N37P4-C2D82-9YXRT-4M63B</td>
+</tr>
+</tbody></table>
+<h2 id="Windows-10，所有支持的半年频道版本"><a href="#Windows-10，所有支持的半年频道版本" class="headerlink" title="Windows 10，所有支持的半年频道版本"></a>Windows 10，所有支持的半年频道版本</h2><p>有关受支持的版本和服务终止日期的信息，请参阅 <a target="_blank" rel="noopener" href="https://support.microsoft.com/help/13853/windows-lifecycle-fact-sheet">Windows 生命周期情况说明书</a>。</p>
+<table>
+<thead>
+<tr>
+<th>操作系统版本</th>
+<th>KMS 客户端安装程序密钥</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows 10 专业版</td>
+<td>W269N-WFGWX-YVC9B-4J6C9-T83GX</td>
+</tr>
+<tr>
+<td>Windows 10 专业版 N</td>
+<td>MH37W-N47XK-V7XM9-C7227-GCQG9</td>
+</tr>
+<tr>
+<td>Windows 10 专业工作站版</td>
+<td>NRG8B-VKK3Q-CXVCJ-9G2XF-6Q84J</td>
+</tr>
+<tr>
+<td>Windows 10 专业工作站版 N</td>
+<td>9FNHH-K3HBT-3W4TD-6383H-6XYWF</td>
+</tr>
+<tr>
+<td>Windows 10 专业教育版</td>
+<td>6TP4R-GNPTD-KYYHQ-7B7DP-J447Y</td>
+</tr>
+<tr>
+<td>Windows 10 专业教育版 N</td>
+<td>YVWGF-BXNMC-HTQYQ-CPQ99-66QFC</td>
+</tr>
+<tr>
+<td>Windows 10 教育版</td>
+<td>NW6C2-QMPVW-D7KKK-3GKT6-VCFB2</td>
+</tr>
+<tr>
+<td>Windows 10 教育版 N</td>
+<td>2WH4N-8QGBV-H22JP-CT43Q-MDWWJ</td>
+</tr>
+<tr>
+<td>Windows 10 企业版</td>
+<td>NPPR9-FWDCX-D2C8J-H872K-2YT43</td>
+</tr>
+<tr>
+<td>Windows 10 企业版 N</td>
+<td>DPH2V-TTNVB-4X9Q3-TJR4H-KHJW4</td>
+</tr>
+<tr>
+<td>Windows 10 企业版 G</td>
+<td>YYVX9-NTFWV-6MDM3-9PT4T-4M68B</td>
+</tr>
+<tr>
+<td>Windows 10 企业版 G N</td>
+<td>44RPN-FTY23-9VTTB-MP9BX-T84FV</td>
+</tr>
+</tbody></table>
+<h2 id="Windows-10-LTSC-LTSB-版本"><a href="#Windows-10-LTSC-LTSB-版本" class="headerlink" title="Windows 10 LTSC/LTSB 版本"></a>Windows 10 LTSC/LTSB 版本</h2><h3 id="Windows-10-LTSC-2019"><a href="#Windows-10-LTSC-2019" class="headerlink" title="Windows 10 LTSC 2019"></a>Windows 10 LTSC 2019</h3><table>
+<thead>
+<tr>
+<th>操作系统版本</th>
+<th>KMS 客户端安装程序密钥</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows 10 企业版 LTSC 2019</td>
+<td>M7XTQ-FN8P6-TTKYV-9D4CC-J462D</td>
+</tr>
+<tr>
+<td>Windows 10 企业版 N LTSC 2019</td>
+<td>92NFX-8DJQP-P6BBQ-THF9C-7CG2H</td>
+</tr>
+</tbody></table>
+<h3 id="Windows-10-LTSB-2016"><a href="#Windows-10-LTSB-2016" class="headerlink" title="Windows 10 LTSB 2016"></a>Windows 10 LTSB 2016</h3><table>
+<thead>
+<tr>
+<th>操作系统版本</th>
+<th>KMS 客户端安装程序密钥</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows 10 企业版 LTSB 2016</td>
+<td>DCPHK-NFMTC-H88MJ-PFHPY-QJ4BJ</td>
+</tr>
+<tr>
+<td>Windows 10 企业版 N LTSB 2016</td>
+<td>QFFDN-GRT3P-VKWWX-X7T3R-8B639</td>
+</tr>
+</tbody></table>
+<h3 id="Windows-10-LTSB-2015"><a href="#Windows-10-LTSB-2015" class="headerlink" title="Windows 10 LTSB 2015"></a>Windows 10 LTSB 2015</h3><table>
+<thead>
+<tr>
+<th>操作系统版本</th>
+<th>KMS 客户端安装程序密钥</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows 10 企业版 2015 LTSB</td>
+<td>WNMTR-4C88C-JK8YV-HQ7T2-76DF9</td>
+</tr>
+<tr>
+<td>Windows 10 企业版 2015 LTSB N</td>
+<td>2F77B-TNFGY-69QQF-B8YKP-D69TJ</td>
+</tr>
+</tbody></table>
+<h2 id="早期版本的-Windows-Server"><a href="#早期版本的-Windows-Server" class="headerlink" title="早期版本的 Windows Server"></a>早期版本的 Windows Server</h2><h3 id="Windows-Server-版本-1803"><a href="#Windows-Server-版本-1803" class="headerlink" title="Windows Server 版本 1803"></a>Windows Server 版本 1803</h3><table>
+<thead>
+<tr>
+<th>操作系统版本</th>
+<th>KMS 客户端安装程序密钥</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows Server Datacenter</td>
+<td>2HXDN-KRXHB-GPYC7-YCKFJ-7FVDG</td>
+</tr>
+<tr>
+<td>Windows Server Standard</td>
+<td>PTXN8-JFHJM-4WC78-MPCBR-9W4KR</td>
+</tr>
+</tbody></table>
+<h3 id="Windows-Server-版本-1709"><a href="#Windows-Server-版本-1709" class="headerlink" title="Windows Server 版本 1709"></a>Windows Server 版本 1709</h3><table>
+<thead>
+<tr>
+<th>操作系统版本</th>
+<th>KMS 客户端安装程序密钥</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows Server Datacenter</td>
+<td>6Y6KB-N82V8-D8CQV-23MJW-BWTG6</td>
+</tr>
+<tr>
+<td>Windows Server Standard</td>
+<td>DPCNP-XQFKJ-BJF7R-FRC8D-GF6G4</td>
+</tr>
+</tbody></table>
+<h3 id="Windows-Server-2012-R2"><a href="#Windows-Server-2012-R2" class="headerlink" title="Windows Server 2012 R2"></a>Windows Server 2012 R2</h3><table>
+<thead>
+<tr>
+<th>操作系统版本</th>
+<th>KMS 客户端安装程序密钥</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows Server 2012 R2 Server Standard</td>
+<td>D2N9P-3P6X9-2R39C-7RTCD-MDVJX</td>
+</tr>
+<tr>
+<td>Windows Server 2012 R2 Datacenter</td>
+<td>W3GGN-FT8W3-Y4M27-J84CP-Q3VJ9</td>
+</tr>
+<tr>
+<td>Windows Server 2012 R2 Essentials</td>
+<td>KNC87-3J2TX-XB4WP-VCPJV-M4FWM</td>
+</tr>
+</tbody></table>
+<h3 id="Windows-Server-2012"><a href="#Windows-Server-2012" class="headerlink" title="Windows Server 2012"></a>Windows Server 2012</h3><table>
+<thead>
+<tr>
+<th>操作系统版本</th>
+<th>KMS 客户端安装程序密钥</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows Server 2012</td>
+<td>BN3D2-R7TKB-3YPBD-8DRP2-27GG4</td>
+</tr>
+<tr>
+<td>Windows Server 2012 N</td>
+<td>8N2M2-HWPGY-7PGT9-HGDD8-GVGGY</td>
+</tr>
+<tr>
+<td>Windows Server 2012 单语言版</td>
+<td>2WN2H-YGCQR-KFX6K-CD6TF-84YXQ</td>
+</tr>
+<tr>
+<td>Windows Server 2012 特定国家/地区版</td>
+<td>4K36P-JN4VD-GDC6V-KDT89-DYFKP</td>
+</tr>
+<tr>
+<td>Windows Server 2012 Server 标准版</td>
+<td>XC9B7-NBPP2-83J2H-RHMBY-92BT4</td>
+</tr>
+<tr>
+<td>Windows Server 2012 MultiPoint 标准版</td>
+<td>HM7DN-YVMH3-46JC3-XYTG7-CYQJJ</td>
+</tr>
+<tr>
+<td>Windows Server 2012 MultiPoint 高级版</td>
+<td>XNH6W-2V9GX-RGJ4K-Y8X6F-QGJ2G</td>
+</tr>
+<tr>
+<td>Windows Server 2012 Datacenter</td>
+<td>48HP8-DN98B-MYWDG-T2DCC-8W83P</td>
+</tr>
+</tbody></table>
+<h3 id="Windows-Server-2008-R2"><a href="#Windows-Server-2008-R2" class="headerlink" title="Windows Server 2008 R2"></a>Windows Server 2008 R2</h3><table>
+<thead>
+<tr>
+<th>操作系统版本</th>
+<th>KMS 客户端安装程序密钥</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows Server 2008 R2 Web 版</td>
+<td>6TPJF-RBVHG-WBW2R-86QPH-6RTM4</td>
+</tr>
+<tr>
+<td>Windows Server 2008 R2 HPC 版</td>
+<td>TT8MH-CG224-D3D7Q-498W2-9QCTX</td>
+</tr>
+<tr>
+<td>Windows Server 2008 R2 标准版</td>
+<td>YC6KT-GKW9T-YTKYR-T4X34-R7VHC</td>
+</tr>
+<tr>
+<td>Windows Server 2008 R2 企业版</td>
+<td>489J6-VHDMP-X63PK-3K798-CPX3Y</td>
+</tr>
+<tr>
+<td>Windows Server 2008 R2 Datacenter</td>
+<td>74YFP-3QFB3-KQT8W-PMXWJ-7M648</td>
+</tr>
+<tr>
+<td>面向基于 Itanium 系统的 Windows Server 2008 R2</td>
+<td>GT63C-RJFQ3-4GMB6-BRFB9-CB83V</td>
+</tr>
+</tbody></table>
+<h3 id="Windows-2008-Server"><a href="#Windows-2008-Server" class="headerlink" title="Windows 2008 Server"></a>Windows 2008 Server</h3><table>
+<thead>
+<tr>
+<th>操作系统版本</th>
+<th>KMS 客户端安装程序密钥</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows Web Server 2008</td>
+<td>WYR28-R7TFJ-3X2YQ-YCY4H-M249D</td>
+</tr>
+<tr>
+<td>Windows Server 2008 标准版</td>
+<td>TM24T-X9RMF-VWXK6-X8JC9-BFGM2</td>
+</tr>
+<tr>
+<td>不带 Hyper-V 的 Windows Server 2008 标准版</td>
+<td>W7VD6-7JFBR-RX26B-YKQ3Y-6FFFJ</td>
+</tr>
+<tr>
+<td>Windows Server 2008 企业版</td>
+<td>YQGMW-MPWTJ-34KDK-48M3W-X4Q6V</td>
+</tr>
+<tr>
+<td>不带 Hyper-V 的 Windows Server 2008 企业版</td>
+<td>39BXF-X8Q23-P2WWT-38T2F-G3FPG</td>
+</tr>
+<tr>
+<td>Windows Server 2008 HPC</td>
+<td>RCTX3-KWVHP-BR6TB-RB6DM-6X7HP</td>
+</tr>
+<tr>
+<td>Windows Server 2008 Datacenter</td>
+<td>7M67G-PC374-GR742-YH8V4-TCBY3</td>
+</tr>
+<tr>
+<td>不带 Hyper-V 的 Windows Server 2008 数据中心版</td>
+<td>22XQ2-VRXRG-P8D42-K34TD-G3QQC</td>
+</tr>
+<tr>
+<td>面向基于 Itanium 系统的 Windows Server 2008</td>
+<td>4DWFP-JF3DJ-B7DTH-78FJB-PDRHK</td>
+</tr>
+</tbody></table>
+<h2 id="早期版本的-Windows"><a href="#早期版本的-Windows" class="headerlink" title="早期版本的 Windows"></a>早期版本的 Windows</h2><h3 id="Windows-8-1"><a href="#Windows-8-1" class="headerlink" title="Windows 8.1"></a>Windows 8.1</h3><table>
+<thead>
+<tr>
+<th>操作系统版本</th>
+<th>KMS 客户端安装程序密钥</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows 8.1 专业版</td>
+<td>GCRJD-8NW9H-F2CDX-CCM8D-9D6T9</td>
+</tr>
+<tr>
+<td>Windows 8.1 专业版 N</td>
+<td>HMCNV-VVBFX-7HMBH-CTY9B-B4FXY</td>
+</tr>
+<tr>
+<td>Windows 8.1 企业版</td>
+<td>MHF9N-XY6XB-WVXMC-BTDCT-MKKG7</td>
+</tr>
+<tr>
+<td>Windows 8.1 企业版 N</td>
+<td>TT4HM-HN7YT-62K67-RGRQJ-JFFXW</td>
+</tr>
+</tbody></table>
+<h3 id="Windows-8"><a href="#Windows-8" class="headerlink" title="Windows 8"></a>Windows 8</h3><table>
+<thead>
+<tr>
+<th>操作系统版本</th>
+<th>KMS 客户端安装程序密钥</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows 8 专业版</td>
+<td>NG4HW-VH26C-733KW-K6F98-J8CK4</td>
+</tr>
+<tr>
+<td>Windows 8 专业版 N</td>
+<td>XCVCF-2NXM9-723PB-MHCB7-2RYQQ</td>
+</tr>
+<tr>
+<td>Windows 8 企业版</td>
+<td>32JNW-9KQ84-P47T8-D8GGY-CWCK7</td>
+</tr>
+<tr>
+<td>Windows 8 企业版 N</td>
+<td>JMNMF-RHW7P-DMY6X-RF3DR-X2BQT</td>
+</tr>
+</tbody></table>
+<h3 id="Windows-7"><a href="#Windows-7" class="headerlink" title="Windows 7"></a>Windows 7</h3><table>
+<thead>
+<tr>
+<th>操作系统版本</th>
+<th>KMS 客户端安装程序密钥</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows 7 专业版</td>
+<td>FJ82H-XT6CR-J8D7P-XQJJ2-GPDD4</td>
+</tr>
+<tr>
+<td>Windows 7 专业版 N</td>
+<td>MRPKT-YTG23-K7D7T-X2JMM-QY7MG</td>
+</tr>
+<tr>
+<td>Windows 7 专业版 E</td>
+<td>W82YF-2Q76Y-63HXB-FGJG9-GF7QX</td>
+</tr>
+<tr>
+<td>Windows 7 企业版</td>
+<td>33PXH-7Y6KF-2VJC9-XBBR8-HVTHH</td>
+</tr>
+<tr>
+<td>Windows 7 企业版 N</td>
+<td>YDRBP-3D83W-TY26F-D46B2-XCKRJ</td>
+</tr>
+<tr>
+<td>Windows 7 企业版 E</td>
+<td>C29WB-22CC8-VJ326-GHFJW-H9DH4</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zxhdhcp.github.io/2021/05/26/%E5%AE%89%E5%85%A8%E4%B9%8B%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80%E7%AF%87%E5%B8%B8%E7%94%A8%E6%9C%AF%E8%AF%AD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="BLACK GHOST">
+      <meta itemprop="description" content="Linux下博客的搭建">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="This is a Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/26/%E5%AE%89%E5%85%A8%E4%B9%8B%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80%E7%AF%87%E5%B8%B8%E7%94%A8%E6%9C%AF%E8%AF%AD/" class="post-title-link" itemprop="url">安全之入门基础篇常用术语</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-26 23:00:34" itemprop="dateCreated datePublished" datetime="2021-05-26T23:00:34+08:00">2021-05-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-06-01 16:40:05" itemprop="dateModified" datetime="2021-06-01T16:40:05+08:00">2021-06-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/security/" itemprop="url" rel="index"><span itemprop="name">security</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>415</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="安全之入门基础篇常用术语"><a href="#安全之入门基础篇常用术语" class="headerlink" title="安全之入门基础篇常用术语"></a>安全之入门基础篇常用术语</h1><p>大马、小马、一句话、webshell、肉鸡、木马、后门、弱口令、shell、免杀</p>
+<p>如何攻击：whois 注册人 邮箱 地址 电话<br>Google hack robots(敏感目录 后台)<br>IP 端口nmap 端口对应的服务MSF<br>bing VPS cloudflare<br>CDN mail posifix Links.cn DNS传输漏洞<br>服务器的操作系统 websever 程序语言<br>info.php 物理路径<br>查看服务器和指纹 CMS<br>前端的攻击 XSS XSIO CSRF Clickjacking<br>数据库类型 熟悉原理 读写信息 写文件<br>越权访问 跳过前端验证 跳过身份验证 目录读取 任意文件读取 任意文件下载 文件包含 远程命令执行 弱口令 上传漏洞 截断 修改 解析漏洞 爆破 编辑器<br>漏洞利用 目的隐藏破坏 Code会写 XSS SQL DDOS<br>SHELL提权 执行权限 EXP 远程本地 信息收集 配置文件 账号密码 社工<br>后门隐藏 更新后门 免杀 web层 系统层<br>伪装隐藏 严谨<br>wiki 整理 归纳 总结<br>免杀来绕过防火墙<br>清扫日志 严谨 伪装</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zxhdhcp.github.io/2021/05/25/RIME-Setting/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="BLACK GHOST">
+      <meta itemprop="description" content="Linux下博客的搭建">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="This is a Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/25/RIME-Setting/" class="post-title-link" itemprop="url">RIME Setting</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-25 23:39:08" itemprop="dateCreated datePublished" datetime="2021-05-25T23:39:08+08:00">2021-05-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-26 14:41:26" itemprop="dateModified" datetime="2021-05-26T14:41:26+08:00">2021-05-26</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="RIME小狼毫"><a href="#RIME小狼毫" class="headerlink" title="RIME小狼毫"></a>RIME小狼毫</h1><p>电脑上的输入法换了又换，从QQ-&gt;Win10自带-&gt;谷歌，最后换成了RIME小狼毫。主要是国内的输入法不可信赖，微软和谷歌界面又太丑太难用，而开源的RIME满足了我的这几个需求。</p>
+<p>它主要面向程序员或是多语言输入用户，提供了很多高级的功能，比如按下引号键能弹出多种样式的引号，按下斜杠可以快捷选择多种已存指令等等，而我比较烦恼的是中文输入状态下用的是英文标点。这些明显都需要去重新设置。</p>
+<p>RIME独特的一点就在于没有设置界面，想要根据使用习惯来进行改动，都需要去修改配置文件内的源码。不过经过以下简单的调校后，使用效果就大概和国内的输入法一模一样了，如果你有更加高级的需求，也可自行查阅 官方文档</p>
+<p>————</p>
+<p>以下是一个很简单的修改教程（真的很简单！)：</p>
+<ol>
+<li><p>安装小狼毫，官网：<a target="_blank" rel="noopener" href="https://rime.im/">https://rime.im/</a></p>
+</li>
+<li><p>安装完成，在调出输入法后可以右键点击任务栏小狼毫图标，选“输入法设定”，只勾选一个“ 朙月拼音·简化字”，再选一个喜欢的皮肤就好</p>
+</li>
+<li><p>Win+R -&gt; 输入 <strong>%appdata%/rime</strong>  ，就可以打开RIME用户设置文件夹。文件很多，但只需要改两个就好。</p>
+</li>
+<li><p>default.custom.yaml  涉及的是输入的功能逻辑，weasel.custom.yaml 涉及的是界面，用记事本类软件打开二者</p>
+<ul>
+<li>default.custom.yaml 文件可以修改<ul>
+<li>输入框待选项个数</li>
+<li>ctrl、shift 的切换键效果</li>
+<li>标点符号的映射</li>
+</ul>
+</li>
+<li>weasel.custom.yaml 文件可以修改<ul>
+<li>输入框显示字体及其字号</li>
+<li>输入框皮肤</li>
+<li>输入框横向显示</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>以下是参考源码，可参考配图来进行复制修改（注意缩进！）</p>
+<p>文件最上面的customization: 内容不用改，改patch: 后的内容就好</p>
+<ul>
+<li>default.custom.yaml</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">customization:</span><br><span class="line">  distribution_code_name: Weasel</span><br><span class="line">  distribution_version: 0.14.3</span><br><span class="line">  generator: <span class="string">&quot;Rime::SwitcherSettings&quot;</span></span><br><span class="line">  modified_time: <span class="string">&quot;Mon Nov  4 15:49:20 2019&quot;</span></span><br><span class="line">  rime_version: 1.5.3</span><br><span class="line">patch:</span><br><span class="line">  schema_list:</span><br><span class="line"></span><br><span class="line">   - &#123;schema: luna_pinyin_simp&#125;</span><br><span class="line"></span><br><span class="line">  menu/page_size: 7        <span class="comment">#输入框待选项个数</span></span><br><span class="line"></span><br><span class="line">  ascii_composer/switch_key:  <span class="comment">#ctrl shift 切换键效果</span></span><br><span class="line">    Caps_Lock: clear</span><br><span class="line">    Shift_L: commit_code</span><br><span class="line">    Control_L: commit_code</span><br><span class="line">    Shift_R: inline_ascii</span><br><span class="line">    Control_R: inline_ascii</span><br><span class="line"></span><br><span class="line">  punctuator/half_shape:  <span class="comment">#半角修改为中文标点</span></span><br><span class="line">    <span class="string">&#x27;&#x27;</span><span class="string">&#x27;&#x27;</span> : &#123; pair: [ <span class="string">&#x27;‘&#x27;</span>, <span class="string">&#x27;’&#x27;</span> ] &#125;</span><br><span class="line">    <span class="string">&#x27;&quot;&#x27;</span> : &#123; pair: [ <span class="string">&#x27;“&#x27;</span>, <span class="string">&#x27;”&#x27;</span> ] &#125;</span><br><span class="line">    <span class="string">&quot;/&quot;</span> : &#123; commit: <span class="string">&#x27;/&#x27;</span> &#125;</span><br><span class="line">    <span class="string">&#x27; &#x27;</span> : &#123; commit: <span class="string">&#x27; &#x27;</span> &#125;</span><br><span class="line">    <span class="string">&#x27;,&#x27;</span> : &#123; commit: ， &#125;</span><br><span class="line">    <span class="string">&#x27;.&#x27;</span> : &#123; commit: 。 &#125;</span><br><span class="line">    <span class="string">&#x27;&lt;&#x27;</span> : &#123; commit: 《 &#125;</span><br><span class="line">    <span class="string">&#x27;&gt;&#x27;</span> : &#123; commit: 》 &#125;</span><br><span class="line">    <span class="string">&#x27;?&#x27;</span> : &#123; commit: ？ &#125;</span><br><span class="line">    <span class="string">&#x27;;&#x27;</span> : &#123; commit: ； &#125;</span><br><span class="line">    <span class="string">&#x27;:&#x27;</span> : &#123; commit: ： &#125;</span><br><span class="line">    <span class="string">&#x27;\&#x27;</span> : &#123; commit: 、 &#125;</span><br><span class="line">    <span class="string">&#x27;|&#x27;</span> : &#123; commit: ｜ &#125;</span><br><span class="line">    <span class="string">&#x27;`&#x27;</span> : &#123; commit: · &#125;</span><br><span class="line">    <span class="string">&#x27;~&#x27;</span> : &#123; commit: ～ &#125;</span><br><span class="line">    <span class="string">&#x27;!&#x27;</span> : &#123; commit: ！ &#125;</span><br><span class="line">    <span class="string">&#x27;%&#x27;</span> : &#123; commit: <span class="string">&#x27;%&#x27;</span> &#125;  </span><br><span class="line">    <span class="string">&#x27;$&#x27;</span> : &#123; commit: <span class="string">&#x27;¥&#x27;</span> &#125;  </span><br><span class="line">    <span class="string">&#x27;^&#x27;</span> : &#123; commit: …… &#125;</span><br><span class="line">    <span class="string">&#x27;&amp;&#x27;</span> : &#123; commit: <span class="string">&#x27;&amp;&#x27;</span> &#125;</span><br><span class="line">    <span class="string">&#x27;*&#x27;</span> : &#123; commit: <span class="string">&#x27;*&#x27;</span> &#125;</span><br><span class="line">    <span class="string">&#x27;(&#x27;</span> : &#123; commit: （ &#125;</span><br><span class="line">    <span class="string">&#x27;)&#x27;</span> : &#123; commit: ） &#125;</span><br><span class="line">    <span class="string">&#x27;_&#x27;</span> : &#123; commit: —— &#125;</span><br><span class="line">    <span class="string">&#x27;[&#x27;</span> : &#123; commit: 【 &#125;</span><br><span class="line">    <span class="string">&#x27;]&#x27;</span> : &#123; commit: 】 &#125;</span><br><span class="line">    <span class="string">&#x27;&#123;&#x27;</span> : &#123; commit: 『 &#125;</span><br><span class="line">    <span class="string">&#x27;&#125;&#x27;</span> : &#123; commit: 』 &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>weasel.custom.yaml</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">customization: </span><br><span class="line">  distribution_code_name: Weasel</span><br><span class="line">  distribution_version: 0.14.3</span><br><span class="line">  generator: <span class="string">&quot;Weasel: :UIStyleSettings&quot;</span></span><br><span class="line">  modified_time: <span class="string">&quot;Sun Nov  3 16: 43:49 2019&quot;</span></span><br><span class="line">  rime_version: 1.5.3</span><br><span class="line">patch: </span><br><span class="line">  <span class="string">&quot;style/color_scheme&quot;</span>: dark_temple <span class="comment"># 夜间模式皮肤</span></span><br><span class="line">  <span class="string">&quot;style/font_face&quot;</span>: <span class="string">&quot;Microsoft YaHei&quot;</span>   <span class="comment"># 字體名稱，这里是微软雅黑</span></span><br><span class="line">  <span class="string">&quot;style/font_point&quot;</span>: 15                          <span class="comment"># 字號，只認數字的</span></span><br><span class="line">  <span class="string">&quot;style/horizontal&quot;</span>: <span class="literal">true</span>           <span class="comment"># 输入候选框横向显示</span></span><br><span class="line">  <span class="string">&quot;style/display_tray_icon&quot;</span>: <span class="literal">false</span></span><br><span class="line">  <span class="string">&quot;style/inline_preedit&quot;</span>: <span class="literal">false</span></span><br><span class="line">  <span class="string">&quot;style/fullscreen&quot;</span>: <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>修改完成后，右键点击任务栏小狼毫图标，选择“重新部署”即可生效</li>
+<li>Ctrl+Shift+3 可以切换全角半角，Ctrl+Shift+4 可以切换简体繁体</li>
+<li><strong>大功告成啦！</strong></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zxhdhcp.github.io/2021/05/25/About-Socks-Setting/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="BLACK GHOST">
+      <meta itemprop="description" content="Linux下博客的搭建">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="This is a Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/25/About-Socks-Setting/" class="post-title-link" itemprop="url">About Socks Setting</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-25 23:34:22" itemprop="dateCreated datePublished" datetime="2021-05-25T23:34:22+08:00">2021-05-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-26 14:42:01" itemprop="dateModified" datetime="2021-05-26T14:42:01+08:00">2021-05-26</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>现在SOCKS的版本默认为5</p>
+<p>SOCKS：</p>
+<p>防火墙安全会话转换协议 （Socks: Protocol for sessions traversal across firewall securely） SOCKS协议提供一个框架，为在 TCP和UDP域中的客户机/服务器应用程序能更方便安全地使用网络防火墙所提供的服务。</p>
+<p>协议工作在OSI参考模型的第5层(会话层)，使用TCP协议传输数据，因而不提供如传递 ICMP信息之类的网络层网关服务。</p>
+<p>概述:</p>
+<p>利用网络防火墙将组织内部的网络结构与外部网络如 INTERNET 中有效地隔离开来，这种方法正变得逐渐流行起来。<br>这些防火墙系统通常以应用层网关的形式工作在网络之间，提供受控的 TELNET 、 FTP 、 SMTP 等的接入。 </p>
+<p>SOCKS 提供一个通用框架来使这些协议安全透明地穿过防火墙。<br>SOCKSv5 为这些协议穿越提供了有力的认证方案，而 SOCKSv4 为 TELNET 、FTP 、HTTP 、WAIS 和 GOPHER 等基于 TCP 协议的客户/服务器程序仅仅提供了一个不安全防火墙穿越。<br>新的协议 SOCKS v5 在 SOCKSV4基础上作了进一步扩展，从而可以支持 UDP ，并对其框架规定作了扩展，以支持安全认证方案。</p>
+<p>同时它还采用地址解析方案 （addressing scheme） 以支持域名和 IPV6 地址解析。<br>为了实现这个 SOCKS 协议，通常需要重新编译或者重新链接基于 TCP 的客户端应用程序以使用 SOCKS 库中相应的封装程序。</p>
+<p>组织来源： SOCKS 由 <a href="www.ietf.org">IETF</a>定义在 RFC1928中。</p>
+<p>socks代理:</p>
+<p>采用socks协议的代理服务器就是SOCKS服务器，是一种通用的代理服务器。</p>
+<p>Socks是个电路级的底层网关，是 DavidKoblas在1990年开发的，此后就一直作为Internet RFC标准的开放标准。</p>
+<p>Socks不要求应用程序遵循特定的操作系统平台，Socks 代理与应用层代理、 HTTP 层代理不同，Socks代理只是简单地传递数据包，而不必关心是何种应用协议（比如FTP、HTTP和NNTP请求）。</p>
+<p>所以，Socks代理比其他应用层代理要快得多。它通常绑定在代理服务器的1080端口上。</p>
+<p>如果您在企业网或校园网上，需要透过防火墙或通过代理服务器访问Internet就可能需要使用 SOCKS。</p>
+<p>一般情况下，对于拨号上网用户都不需要使用它。</p>
+<p>注意，浏览网页时常用的代理服务器通常是专门的http代理，它和SOCKS是不同的。</p>
+<p>因此，您能浏览网页不等于您一定可以通过SOCKS访问Internet。</p>
+<p>常用的防火墙，或代理软件都支持SOCKS，但需要其管理员打开这一功能。</p>
+<p>如果您不确信您是否需要SOCKS或是否有SOCKS可用，请与您的网络管理员联系。<br>为了使用socks，您需要了解以下内容：<br>① SOCKS服务器的IP地址<br>② SOCKS服务所在的端口<br>③ 这个SOCKS服务是否需要用户认证？如果需要，您要向您的网络管理员申请一个用户和口令知道了上述信息，您就可以把这些信息填入“网络配置”中，或者在第一次登记时填入，您就可以使用socks代理了。</p>
+<p>在实际应用中SOCKS代理可以用作为：电子邮件、新闻组软件、网络传呼ICQ、网络聊天MIRC和使用代理服务器上联众打游戏等等各种游戏应用软件当中。<br>Socks默认端口1080，Socks5是socks协议最新的一个版本。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zxhdhcp.github.io/2021/05/25/ROM-%E7%A7%8D%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="BLACK GHOST">
+      <meta itemprop="description" content="Linux下博客的搭建">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="This is a Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/25/ROM-%E7%A7%8D%E7%B1%BB/" class="post-title-link" itemprop="url">ROM 种类</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-25 23:28:44" itemprop="dateCreated datePublished" datetime="2021-05-25T23:28:44+08:00">2021-05-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-26 14:30:45" itemprop="dateModified" datetime="2021-05-26T14:30:45+08:00">2021-05-26</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>686</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="ROM-种类"><a href="#ROM-种类" class="headerlink" title="ROM 种类"></a>ROM 种类</h1><ol>
+<li>ROM<br> 只读内存（Read-Only Memory）是一种只能读取资料的内存。在制造过程中，将资料以一特制光罩（mask）烧录于线路中，其资料内容在写入后就不能更改，所以有时又称为“光罩式只读内存”（mask ROM）。此内存的制造成本较低，常用于电脑中的开机启动。 </li>
+<li>PROM<br> 可编程程序只读内存（Programmable ROM，PROM）之内部有行列式的镕丝，视需要利用电流将其烧断，写入所需的资料，但仅能写录一次。 </li>
+<li>EPROM<br> 可抹除可编程只读内存（Erasable Programmable Read Only Memory，EPROM）可利用高电压将资料编程写入，抹除时将线路曝光于紫外线下，则资料可被清空，并且可重复使用。通常在封装外壳上会预留一个石英透明窗以方便曝光。 </li>
+<li>OTPROM<br> 一次编程只读内存（One Time Programmable Read Only Memory，OPTROM）之写入原理同EPROM，但是为了节省成本，编程写入之后就不再抹除，因此不设置透明窗。 </li>
+<li>EEPROM<br> 电子式可抹除可编程只读内存（Electrically Erasable Programmable Read Only Memory，EEPROM）之运作原理类似EPROM，但是抹除的方式是使用高电场来完成，因此不需要透明窗。 </li>
+<li>快闪存储器<br> 快闪存储器（Flash memory）的每一个记忆胞都具有一个“控制闸”与“浮动闸”，利用高电场改变浮动闸的临限电压即可进行编程动作。</li>
+<li>快闪存储器<br> 指从游戏机主文件存储器里或者正版游戏卡带提取的游戏主文件，可以在各类模拟器上使用。例如街机模拟器，GBA模拟器的ROM，正是此意。</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+
+
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="BLACK GHOST"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">BLACK GHOST</p>
+  <div class="site-description" itemprop="description">Linux下博客的搭建</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zxhdhcp" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zxhdhcp" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zxhzsyzyl@gmail.com" title="E-Mail → mailto:zxhzsyzyl@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+    
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BLACK GHOST</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">10k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">10 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='' opacity='' zIndex='' count='' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+
+
+</body>
+</html>
+
